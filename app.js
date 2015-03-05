@@ -4,8 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/test', function(err) {
+    if(err) {
+        console.log('mongodb connection error', err);
+    } else {
+        console.log('mongodb connection successful');
+    }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
