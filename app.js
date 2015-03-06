@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 
 var app = express();
 app.locals.moment = require('moment');
-app.locals.moment.lang('zh-cn');
+app.locals.moment.lang = 'zh-cn';
+//app.locals.moment.locale('zh-cn');
 
 mongoose.connect('mongodb://localhost/test', function(err) {
     if(err) {
