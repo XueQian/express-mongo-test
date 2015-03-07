@@ -4,10 +4,10 @@
 var express = require('express');
 var router = express.Router();
 
-var Users = require('../../models/users');
+var User = require('../../model/user');
 
 router.get('/', function(req, res) {
-    Users.findAll(function (err, users) {
+    User.findAll(function (err, users) {
         if(err){
             console.log('get users error');
         }else{
@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 
 router.get('/:id',function(req,res){
     var id = req.params.id;
-    Users.findById(id,function(err,user){
+    User.findById(id,function(err,user){
         if(err){
             console.log('get user error');
         }else{
