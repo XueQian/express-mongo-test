@@ -24,7 +24,7 @@ router.get('/:id',function(req,res){
         }else{
             res.send(user);
         }
-    })
+    });
 });
 
 module.exports = router;
