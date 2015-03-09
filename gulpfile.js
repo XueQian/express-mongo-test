@@ -20,6 +20,12 @@ gulp.task('lint_model',function(){
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
+
+gulp.task('lint_test',function(){
+    return gulp.src('./test/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
 //
 //gulp.task('js', function() {
 //    gulp.src('./**/*.js')
