@@ -1,39 +1,29 @@
-/**
- * Created by qxue on 3/7/15.
- */
-//var gulp=require('gulp'),
-//    gutil=require('gulp-util'),
-//    uglify=require('gulp-uglify'),
-//    concat=require('gulp-concat');
+'use strict';
 
-var jshint = require('gulp-jshint');
 var gulp   = require('gulp');
 
-gulp.task('lint_router', function() {
-    return gulp.src('./router/**/*.js')
+var jshint = require('gulp-jshint');
+var istanbul = require('gulp-istanbul');
+var mocha = require('gulp-mocha');
+
+gulp.task('lint', function() {
+    return gulp.src(['./router/**/*.js','./model/*.js','./test/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('lint_model',function(){
-    return gulp.src('./model/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+gulp.task('test', function (cb) {
+    gulp.src(['./router/**/*.js','./model/*,js'])
+        .pipe(istanbul())
+        .pipe(istanbul.hookRequire())
+        .on('finish', function () {
+            gulp.src(['test/**/*.js'])
+                .pipe(mocha())
+                .pipe(istanbul.writeReports())
+                .on('end', cb);
+        });
 });
 
-gulp.task('lint_test',function(){
-    return gulp.src('./test/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-});
-//
-//gulp.task('js', function() {
-//    gulp.src('./**/*.js')
-//        .pipe(uglify())
-//        .pipe(concat('all.js'))
-//        .pipe(gulp.dest('./js'));
-//});
-//
-gulp.task('default', ['lint_router','lint_model']);
+gulp.task('default', ['lint','test']);
 
-gulp.watch('./**/*.js', ['lint_router','lint_model']);
+gulp.watch('./**/*.js', ['lint','test']);
