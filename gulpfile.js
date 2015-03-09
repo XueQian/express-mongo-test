@@ -30,4 +30,4 @@ gulp.task('lint_model',function(){
 //
 gulp.task('default', ['lint_router','lint_model']);
 
-//gulp.watch('./**/*.js', ['js']);
+gulp.watch('./**/*.js', ['lint_router','lint_model']);
