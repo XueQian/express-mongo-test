@@ -16,15 +16,15 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/:id',function(req,res){
-    var id = req.params.id;
-    User.findById(id,function(err,user){
-        if(err){
-            console.log('get user error');
-        }else{
-            res.send(user);
-        }
-    });
-});
+//router.get('/:id',function(req,res){
+//    var id = req.params.id;
+//    User.findById(id,function(err,user){
+//        if(err){
+//            console.log('get user error');
+//        }else{
+//            res.send(user);
+//        }
+//    });
+//});
 
 module.exports = router;

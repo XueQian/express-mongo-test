@@ -20,4 +20,12 @@ describe('Users', function () {
         })
     });
 
+    describe('GET /404', function () {
+        it('should return 404', function (done) {
+            request
+                .get('/404')
+                .expect(404, done);
+        });
+    });
+
 });
